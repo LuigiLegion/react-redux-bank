@@ -4,8 +4,11 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 Make a folder where you want your project to live and cd in
 `git init`
+
 `git remote add crra git@github.com:marvinody/create-react-redux-app.git`
+
 `git fetch crra`
+
 `git merge crra/master`
 
 ## Available Scripts
