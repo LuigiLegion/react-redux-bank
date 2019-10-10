@@ -11,6 +11,8 @@ Make a folder where you want your project to live and cd in
 
 `git merge crra/master`
 
+`npm install`
+
 ## Available Scripts
 
 In the project directory, you can run:
