@@ -1,13 +1,57 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Myriad Pro', Helvetica, Arial, sans-serif;
+  background-color: #764abc;
+  color: #fff;
+  text-align: center;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+h1 {
+  font-size: 30px;
+}
+
+p {
+  margin: 0;
+}
+
+img {
+  border-radius: 50%;
+}
+
+header {
+  width: 100%;
+  padding: 15px;
+  background-color: #61dbfb;
+  color: #764abc;
+  font-size: 30px;
+}
+
+.atm {
+  width: 320px;
+  border-radius: 10px;
+  background-color: #61dbfb;
+  margin: 10px auto 0 auto;
+  padding: 20px;
+}
+
+.atm button {
+  width: 150px;
+  height: 56px;
+  margin: 4px 2px;
+  padding: 20px 36px;
+}
+
+.logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
