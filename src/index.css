@@ -22,9 +22,9 @@ p {
   margin: 0;
 }
 
-img {
-  border-radius: 50%;
-}
+/* img {
+
+} */
 
 .atm {
   width: 320px;
@@ -45,6 +45,7 @@ img {
   animation: App-logo-spin infinite 20s linear;
   height: 30vmin;
   pointer-events: none;
+  border-radius: 50%;
 }
 
 @keyframes App-logo-spin {
