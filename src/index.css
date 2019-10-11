@@ -1,17 +1,17 @@
 body {
-  margin: 0;
-  font-family: 'Myriad Pro', Helvetica, Arial, sans-serif;
   background-color: #764abc;
   color: #fff;
+  font-family: 'Myriad Pro', Helvetica, Arial, sans-serif;
   text-align: center;
+  margin: 0;
 }
 
 header {
-  width: 98.5%;
-  padding: 15px;
   background-color: #61dbfb;
   color: #764abc;
   font-size: 30px;
+  width: 98.5%;
+  padding: 15px;
 }
 
 h1 {
@@ -22,30 +22,26 @@ p {
   margin: 0;
 }
 
-/* img {
-
-} */
-
 .atm {
+  background-color: #61dbfb;
   width: 320px;
   border-radius: 10px;
-  background-color: #61dbfb;
   margin: 10px auto 0 auto;
   padding: 20px;
 }
 
 .atm button {
-  width: 150px;
   height: 56px;
+  width: 150px;
   margin: 6px 2px;
   padding: 20px 30px;
 }
 
 .logo {
-  animation: App-logo-spin infinite 20s linear;
   height: 30vmin;
-  pointer-events: none;
   border-radius: 50%;
+  animation: App-logo-spin infinite 20s linear;
+  pointer-events: none;
 }
 
 @keyframes App-logo-spin {
