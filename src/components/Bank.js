@@ -11,17 +11,12 @@ const Bank = props => {
   return (
     <div>
       <header>
-        <img
-          className="logo"
-          src="/logo.jpeg"
-          width="375"
-          alt="React Redux Bank"
-        />
+        <img className="logo" src="/logo.jpeg" alt="React-Redux Bank" />
         <br />
-        React-Redux Bank
+        <div>React-Redux Bank</div>
       </header>
       <br />
-      <h1 id="balance">$ {props.balance}</h1>
+      <h1 className="balance">$ {props.balance}</h1>
       <div className="atm">
         <button onClick={props.depositFifty} type="button">
           Deposit $50
