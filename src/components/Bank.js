@@ -16,7 +16,7 @@ const Bank = props => {
         <div>React-Redux Bank</div>
       </header>
       <br />
-      <h1 id="balance">$ {props.balance}</h1>
+      <h1>$ {props.balance}</h1>
       <div className="atm">
         <button onClick={props.depositFifty} type="button">
           Deposit $50
