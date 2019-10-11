@@ -11,12 +11,7 @@ const Bank = props => {
   return (
     <div>
       <header>
-        <img
-          className="logo"
-          src="/logo.jpeg"
-          width="375"
-          alt="React Redux Bank"
-        />
+        <img className="logo" src="/logo.jpeg" alt="React Redux Bank" />
         <br />
         React-Redux Bank
       </header>
