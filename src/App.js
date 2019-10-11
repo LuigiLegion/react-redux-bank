@@ -1,12 +1,12 @@
 import React from 'react';
 import Bank from './components/Bank';
 
-function App() {
+const App = props => {
   return (
     <div className="App">
       <Bank />
     </div>
   );
-}
+};
 
 export default App;
