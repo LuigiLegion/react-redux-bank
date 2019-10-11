@@ -3,7 +3,7 @@ import Bank from './components/Bank';
 
 const App = props => {
   return (
-    <div className="App">
+    <div>
       <Bank />
     </div>
   );
