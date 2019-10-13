@@ -27,7 +27,11 @@ const mapStateToProps = state => {
   return {};
 };
 
-const mapDispatchToProps = dispatch => ({});
+const mapDispatchToProps = dispatch => {
+  console.log('dispatch in mapDispatchToProps: ', dispatch);
+
+  return {};
+};
 
 export default connect(
   mapStateToProps,
