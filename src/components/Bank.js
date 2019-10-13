@@ -21,6 +21,7 @@ const Bank = props => {
   );
 };
 
+// Please refactor mapStateToProps and mapDispatchToProps into implicitly returning functions rather than explicitly returning ones once you get everything up and running
 const mapStateToProps = state => {
   console.log('state in mapStateToProps: ', state);
 
