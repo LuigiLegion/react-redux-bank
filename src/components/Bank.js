@@ -21,7 +21,11 @@ const Bank = props => {
   );
 };
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => {
+  console.log('state in mapStateToProps: ', state);
+
+  return {};
+};
 
 const mapDispatchToProps = dispatch => ({});
 
