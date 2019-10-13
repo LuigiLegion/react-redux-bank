@@ -21,9 +21,17 @@ const Bank = props => {
   );
 };
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => {
+  console.log('state in mapStateToProps: ', state);
 
-const mapDispatchToProps = dispatch => ({});
+  return {};
+};
+
+const mapDispatchToProps = dispatch => {
+  console.log('dispatch in mapDispatchToProps: ', dispatch);
+
+  return {};
+};
 
 export default connect(
   mapStateToProps,
