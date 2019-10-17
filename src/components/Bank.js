@@ -22,23 +22,19 @@ class Bank extends Component {
   }
 
   handleChange(event) {
-    console.log('handleChange event.target.value: ', event.target.value);
+    const curCustomAmount = Number(event.target.value);
 
-    const newCustomAmount = Number(event.target.value);
-
-    if (isNaN(newCustomAmount)) {
+    if (isNaN(curCustomAmount)) {
       this.setState({ invalidCustomAmount: true });
     } else {
       this.setState({
-        customAmount: newCustomAmount,
+        customAmount: curCustomAmount,
         invalidCustomAmount: false,
       });
     }
   }
 
   handleClick(event) {
-    console.log('handleClick event.target.value: ', event.target.value);
-
     const curButtonType = event.target.value;
 
     if (curButtonType === 'Deposit') {
@@ -92,8 +88,6 @@ class Bank extends Component {
             type="text"
             id="customAmount"
             required
-            // pattern="[1-9]"
-            // title="Must contain numbers only"
             placeholder="Enter Amount Here"
             onChange={this.handleChange}
           />
