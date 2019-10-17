@@ -16,20 +16,35 @@ class Bank extends Component {
       customAmount: 0,
       invalidCustomAmount: false,
     };
+
     this.handleChange = this.handleChange.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   handleChange(event) {
-    // console.log('event.target.value: ', event.target.value);
+    console.log('handleChange event.target.value: ', event.target.value);
+
     const newCustomAmount = Number(event.target.value);
 
-    if (!isNaN(newCustomAmount)) {
+    if (isNaN(newCustomAmount)) {
+      this.setState({ invalidCustomAmount: true });
+    } else {
       this.setState({
         customAmount: newCustomAmount,
         invalidCustomAmount: false,
       });
-    } else {
-      this.setState({ invalidCustomAmount: true });
+    }
+  }
+
+  handleClick(event) {
+    console.log('handleClick event.target.value: ', event.target.value);
+
+    const curButtonType = event.target.value;
+
+    if (curButtonType === 'Deposit') {
+      this.props.depositCustomAmount(this.state.customAmount);
+    } else if (curButtonType === 'Withdraw') {
+      this.props.withdrawCustomAmount(this.state.customAmount);
     }
   }
 
@@ -69,32 +84,32 @@ class Bank extends Component {
         </div>
 
         <div className="atm">
-          <label htmlFor="firstName">Custom Amount: </label>
+          <label htmlFor="customAmount" value={this.state.customAmount}>
+            Custom Amount:{' '}
+          </label>
 
           <input
             type="text"
-            id="firstName"
+            id="customAmount"
             required
-            pattern="[1-9]"
-            title="Must contain numbers only"
+            // pattern="[1-9]"
+            // title="Must contain numbers only"
             placeholder="Enter Amount Here"
             onChange={this.handleChange}
           />
 
           <button
-            onClick={() =>
-              this.props.depositCustomAmount(this.state.customAmount)
-            }
+            onClick={event => this.handleClick(event)}
             type="button"
+            value="Deposit"
           >
             Deposit
           </button>
 
           <button
-            onClick={() =>
-              this.props.withdrawCustomAmount(this.state.customAmount)
-            }
+            onClick={event => this.handleClick(event)}
             type="button"
+            value="Withdraw"
           >
             Withdraw
           </button>
