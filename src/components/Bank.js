@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
+  depositCustomAmountActionCreator,
   depositFiftyActionCreator,
   depositHundredActionCreator,
+  withdrawCustomAmountActionCreator,
   withdrawFiftyActionCreator,
   withdrawHundredActionCreator,
 } from '../store/index';
@@ -92,11 +94,17 @@ const mapDispatchToProps = dispatch => ({
   depositHundred() {
     dispatch(depositHundredActionCreator());
   },
+  depositCustomAmount(customAmount) {
+    dispatch(depositCustomAmountActionCreator(customAmount));
+  },
   withdrawFifty() {
     dispatch(withdrawFiftyActionCreator());
   },
   withdrawHundred() {
     dispatch(withdrawHundredActionCreator());
+  },
+  withdrawCustom(customAmount) {
+    dispatch(withdrawCustomAmountActionCreator(customAmount));
   },
 });
 
