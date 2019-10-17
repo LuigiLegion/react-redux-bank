@@ -8,6 +8,13 @@ import {
 } from '../store/index';
 
 class Bank extends Component {
+  constructor() {
+    super();
+    this.state = {
+      customAmount: 0,
+    };
+  }
+
   render() {
     return (
       <div>
@@ -48,9 +55,10 @@ class Bank extends Component {
             type="text"
             id="firstName"
             required
-            pattern="[A-Za-z]{2,32}"
-            title="Must contain uppercase and lowercase letters only, and at least 2 characters in total"
+            pattern="[1-9]"
+            title="Must contain numbers only"
             onChange={this.handleChange}
+            placeholder="Enter Amount Here"
           />
 
           <button onClick={this.props.depositCustomAmount} type="button">
