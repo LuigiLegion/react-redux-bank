@@ -8,6 +8,8 @@ const DEPOSIT_FIFTY = 'DEPOSIT_FIFTY';
 const DEPOSIT_HUNDRED = 'DEPOSIT_HUNDRED';
 const WITHDRAW_FIFTY = 'WITHDRAW_FIFTY';
 const WITHDRAW_HUNDRED = 'WITHDRAW_HUNDRED';
+const DEPOSIT_CUSTOM_AMOUNT = 'DEPOSIT_CUSTOM_AMOUNT';
+const WITHDRAW_CUSTOM_AMOUNT = 'WITHDRAW_CUSTOM_AMOUNT';
 
 // Action Creators
 export const depositFiftyActionCreator = () => ({
@@ -24,6 +26,14 @@ export const withdrawFiftyActionCreator = () => ({
 
 export const withdrawHundredActionCreator = () => ({
   type: WITHDRAW_HUNDRED,
+});
+
+export const depositCustomAmountActionCreator = () => ({
+  type: DEPOSIT_CUSTOM_AMOUNT,
+});
+
+export const withdrawCustomAmountActionCreator = () => ({
+  type: WITHDRAW_CUSTOM_AMOUNT,
 });
 
 // Reducer
