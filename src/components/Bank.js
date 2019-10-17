@@ -14,14 +14,23 @@ class Bank extends Component {
     super();
     this.state = {
       customAmount: 0,
+      invalidCustomAmount: false,
     };
     this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(event) {
     // console.log('event.target.value: ', event.target.value);
-    const newCustomAmount = event.target.value;
-    this.setState({ customAmount: newCustomAmount });
+    const newCustomAmount = Number(event.target.value);
+
+    if (!isNaN(newCustomAmount)) {
+      this.setState({
+        customAmount: newCustomAmount,
+        invalidCustomAmount: false,
+      });
+    } else {
+      this.setState({ invalidCustomAmount: true });
+    }
   }
 
   render() {
@@ -70,11 +79,21 @@ class Bank extends Component {
             onChange={this.handleChange}
           />
 
-          <button onClick={this.props.depositCustomAmount} type="button">
+          <button
+            onClick={() =>
+              this.props.depositCustomAmount(this.state.customAmount)
+            }
+            type="button"
+          >
             Deposit
           </button>
 
-          <button onClick={this.props.withdrawCustomAmount} type="button">
+          <button
+            onClick={() =>
+              this.props.withdrawCustomAmount(this.state.customAmount)
+            }
+            type="button"
+          >
             Withdraw
           </button>
         </div>
@@ -103,7 +122,7 @@ const mapDispatchToProps = dispatch => ({
   withdrawHundred() {
     dispatch(withdrawHundredActionCreator());
   },
-  withdrawCustom(customAmount) {
+  withdrawCustomAmount(customAmount) {
     dispatch(withdrawCustomAmountActionCreator(customAmount));
   },
 });
