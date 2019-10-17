@@ -13,6 +13,13 @@ class Bank extends Component {
     this.state = {
       customAmount: 0,
     };
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(event) {
+    // console.log('event.target.value: ', event.target.value);
+    const newCustomAmount = event.target.value;
+    this.setState({ customAmount: newCustomAmount });
   }
 
   render() {
@@ -57,8 +64,8 @@ class Bank extends Component {
             required
             pattern="[1-9]"
             title="Must contain numbers only"
-            onChange={this.handleChange}
             placeholder="Enter Amount Here"
+            onChange={this.handleChange}
           />
 
           <button onClick={this.props.depositCustomAmount} type="button">
