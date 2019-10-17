@@ -28,12 +28,14 @@ export const withdrawHundredActionCreator = () => ({
   type: WITHDRAW_HUNDRED,
 });
 
-export const depositCustomAmountActionCreator = () => ({
+export const depositCustomAmountActionCreator = customAmount => ({
   type: DEPOSIT_CUSTOM_AMOUNT,
+  customAmount,
 });
 
-export const withdrawCustomAmountActionCreator = () => ({
+export const withdrawCustomAmountActionCreator = customAmount => ({
   type: WITHDRAW_CUSTOM_AMOUNT,
+  customAmount,
 });
 
 // Reducer
