@@ -34,6 +34,8 @@ class Bank extends Component {
   }
 
   render() {
+    const { invalidCustomAmount } = this.state;
+
     return (
       <div>
         <header>
@@ -97,6 +99,10 @@ class Bank extends Component {
             Withdraw
           </button>
         </div>
+
+        {invalidCustomAmount ? (
+          <div className="atm">Invalid Custom Amount! Please Try Again.</div>
+        ) : null}
       </div>
     );
   }
