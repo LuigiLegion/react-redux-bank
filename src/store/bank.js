@@ -43,16 +43,22 @@ const bankReducer = (state = initialState, action) => {
   switch (action.type) {
     case DEPOSIT_FIFTY:
       return { ...state, balance: state.balance + 50 };
+
     case DEPOSIT_HUNDRED:
       return { ...state, balance: state.balance + 100 };
+
     case DEPOSIT_CUSTOM_AMOUNT:
       return { ...state, balance: state.balance + action.customAmount };
+
     case WITHDRAW_FIFTY:
       return { ...state, balance: state.balance - 50 };
+
     case WITHDRAW_HUNDRED:
       return { ...state, balance: state.balance - 100 };
+
     case WITHDRAW_CUSTOM_AMOUNT:
       return { ...state, balance: state.balance - action.customAmount };
+
     default:
       return state;
   }
