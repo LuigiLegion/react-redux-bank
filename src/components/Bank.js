@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
-  convertCurrencyThunkCreator,
   depositCustomAmountActionCreator,
   depositFiftyActionCreator,
   depositHundredActionCreator,
@@ -14,6 +13,10 @@ class Bank extends Component {
   constructor() {
     super();
     this.state = {
+      // Here are two additional fields in local state - sourceCurrency and targetCurrency.
+
+      // Please use them to show users the correct currency symbol throughout the app every time they convert their currency, rather than hardcode it.
+
       sourceCurrency: '$',
       targetCurrency: '€',
       customAmount: 0,
@@ -53,9 +56,9 @@ class Bank extends Component {
     const newTargetCurrency = this.state.sourceCurrency;
 
     if (newSourceCurrency === '$') {
-      this.props.convertCurrency('USD', 'EUR');
+      // Don't forget to plug in your Thunk after you map your Thunk Creator to props.
     } else {
-      this.props.convertCurrency('EUR', 'USD');
+      // Remember, currency conversion can go both ways.
     }
 
     this.setState({
@@ -85,29 +88,36 @@ class Bank extends Component {
 
         <div className="atm">
           <h1 className="balance">
-            {this.state.sourceCurrency} {this.props.balance.toFixed(2)}
+            {`$ ${this.props.balance}`}
+
+            {/*
+            What is wrong with the way we are bringing in the balance after converting it?
+
+            Look into the toFixed method
+            (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed)
+            */}
           </h1>
 
           <button onClick={this.handleConvert} type="button">
-            Convert to {this.state.targetCurrency}
+            Convert to €
           </button>
         </div>
 
         <div className="atm">
           <button onClick={this.props.depositFifty} type="button">
-            Deposit {this.state.sourceCurrency} 50
+            Deposit $ 50
           </button>
 
           <button onClick={this.props.depositHundred} type="button">
-            Deposit {this.state.sourceCurrency} 100
+            Deposit $ 100
           </button>
 
           <button onClick={this.props.withdrawFifty} type="button">
-            Withdraw {this.state.sourceCurrency} 50
+            Withdraw $ 50
           </button>
 
           <button onClick={this.props.withdrawHundred} type="button">
-            Withdraw {this.state.sourceCurrency} 100
+            Withdraw $ 100
           </button>
         </div>
 
@@ -129,7 +139,7 @@ class Bank extends Component {
             type="button"
             value="Deposit"
           >
-            Deposit {this.state.sourceCurrency}
+            Deposit $
           </button>
 
           <button
@@ -137,7 +147,7 @@ class Bank extends Component {
             type="button"
             value="Withdraw"
           >
-            Withdraw {this.state.sourceCurrency}
+            Withdraw $
           </button>
         </div>
 
@@ -172,8 +182,15 @@ const mapDispatchToProps = dispatch => ({
   withdrawCustomAmount(customAmount) {
     dispatch(withdrawCustomAmountActionCreator(customAmount));
   },
-  convertCurrency(sourceCurrency, targetCurrency) {
-    dispatch(convertCurrencyThunkCreator(sourceCurrency, targetCurrency));
+  // Make sure you import your newly made Thunk Creator and plug it into mapDispatchToProps properly.
+
+  convertCurrencyThunk() {
+    // Will this thunk receive arguments?
+
+    // If so, make sure you declare parameters to bring in said arguments.
+
+    // Don't forget to pass them into dispatch properly.
+    dispatch();
   },
 });
 
