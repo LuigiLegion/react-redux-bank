@@ -110,17 +110,21 @@ class Bank extends Component {
         </div>
 
         <div className="atm">
-          <label htmlFor="customAmount" value={this.state.customAmount}>
+          {/* <label htmlFor="customAmount">
             Custom Amount:{' '}
-          </label>
+          </label> */}
 
-          <input
-            type="text"
-            id="customAmount"
-            required
-            placeholder="Enter Amount Here"
-            onChange={this.handleChange}
-          />
+          <div>
+            <input
+              type="text"
+              id="customAmount"
+              required
+              placeholder="Enter Custom Amount Here"
+              onChange={this.handleChange}
+            />
+          </div>
+
+          <br />
 
           <button
             onClick={event => this.handleClick(event)}

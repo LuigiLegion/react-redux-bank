@@ -48,3 +48,7 @@ header {
     transform: rotate(360deg);
   }
 }
+
+#customAmount {
+  width: 45%;
+}
