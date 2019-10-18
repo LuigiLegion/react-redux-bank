@@ -49,8 +49,6 @@ class Bank extends Component {
   }
 
   handleConvert() {
-    console.log('handleConvert');
-
     const newSourceCurrency = this.state.targetCurrency;
     const newTargetCurrency = this.state.sourceCurrency;
 
@@ -110,10 +108,6 @@ class Bank extends Component {
         </div>
 
         <div className="atm">
-          {/* <label htmlFor="customAmount">
-            Custom Amount:{' '}
-          </label> */}
-
           <div>
             <input
               type="text"
@@ -131,7 +125,7 @@ class Bank extends Component {
             type="button"
             value="Deposit"
           >
-            Deposit
+            Deposit {this.state.sourceCurrency}
           </button>
 
           <button
@@ -139,7 +133,7 @@ class Bank extends Component {
             type="button"
             value="Withdraw"
           >
-            Withdraw
+            Withdraw {this.state.sourceCurrency}
           </button>
         </div>
 
