@@ -102,7 +102,7 @@ const bankReducer = (state = initialState, action) => {
     case CONVERT_CURRENCY:
       // What will we do with the action payload to update the current balance?
 
-      return { ...state, balance: state.balance };
+      return { ...state };
 
     default:
       return state;
