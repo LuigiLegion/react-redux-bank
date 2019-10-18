@@ -10,6 +10,7 @@ const DEPOSIT_CUSTOM_AMOUNT = 'DEPOSIT_CUSTOM_AMOUNT';
 const WITHDRAW_FIFTY = 'WITHDRAW_FIFTY';
 const WITHDRAW_HUNDRED = 'WITHDRAW_HUNDRED';
 const WITHDRAW_CUSTOM_AMOUNT = 'WITHDRAW_CUSTOM_AMOUNT';
+const CONVERT_CURRENCY = 'CONVERT_CURRENCY';
 
 // Action Creators
 export const depositFiftyActionCreator = () => ({
@@ -36,6 +37,15 @@ export const withdrawHundredActionCreator = () => ({
 export const withdrawCustomAmountActionCreator = customAmount => ({
   type: WITHDRAW_CUSTOM_AMOUNT,
   customAmount,
+});
+
+export const convertCurrencyActionCreator = (
+  sourceCurrency,
+  targetCurrency
+) => ({
+  type: CONVERT_CURRENCY,
+  sourceCurrency,
+  targetCurrency,
 });
 
 // Reducer
