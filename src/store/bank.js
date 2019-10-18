@@ -82,6 +82,9 @@ const bankReducer = (state = initialState, action) => {
     case WITHDRAW_CUSTOM_AMOUNT:
       return { ...state, balance: state.balance - action.customAmount };
 
+    case CONVERT_CURRENCY:
+      return { ...state, balance: state.balance * action.conversionRate };
+
     default:
       return state;
   }
