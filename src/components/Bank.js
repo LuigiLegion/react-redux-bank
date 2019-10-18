@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
+  convertCurrencyThunkCreator,
   depositCustomAmountActionCreator,
   depositFiftyActionCreator,
   depositHundredActionCreator,
@@ -55,6 +56,10 @@ class Bank extends Component {
       sourceCurrency: newSourceCurrency,
       targetCurrency: newTargetCurrency,
     });
+
+    if (newSourceCurrency === '$') {
+    } else {
+    }
   }
 
   render() {
@@ -158,6 +163,9 @@ const mapDispatchToProps = dispatch => ({
   },
   withdrawCustomAmount(customAmount) {
     dispatch(withdrawCustomAmountActionCreator(customAmount));
+  },
+  convertCurrency(sourceCurrency, targetCurrency) {
+    dispatch(convertCurrencyThunkCreator(sourceCurrency, targetCurrency));
   },
 });
 
