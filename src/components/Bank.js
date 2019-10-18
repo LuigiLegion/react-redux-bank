@@ -61,10 +61,8 @@ class Bank extends Component {
       // Remember, currency conversion can go both ways.
     }
 
-    this.setState({
-      sourceCurrency: newSourceCurrency,
-      targetCurrency: newTargetCurrency,
-    });
+    // Make sure you swap the sourceCurrency and targetCurrency every time you convert.
+    this.setState({});
   }
 
   render() {
