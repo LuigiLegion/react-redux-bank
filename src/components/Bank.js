@@ -83,7 +83,7 @@ class Bank extends Component {
 
         <div className="atm">
           <h1 className="balance">
-            {this.state.sourceCurrency} {this.props.balance}
+            {this.state.sourceCurrency} {this.props.balance.toFixed(2)}
           </h1>
 
           <button onClick={this.handleConvert} type="button">
