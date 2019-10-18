@@ -51,12 +51,15 @@ export const convertCurrencyThunkCreator = (sourceCurrency, targetCurrency) => {
   return async dispatch => {
     try {
       const { data } = await axios.get(
-        `https://www.freeforexapi.com/api/live?pairs=${sourceCurrency}${targetCurrency}`
+        `https://cors-anywhere.herokuapp.com/https://www.freeforexapi.com/api/live?pairs=${sourceCurrency}${targetCurrency}`
       );
 
       console.log('data: ', data);
 
-      dispatch(convertCurrencyActionCreator(data));
+      const curConversionRate =
+        data.rates[sourceCurrency + targetCurrency].rate;
+
+      dispatch(convertCurrencyActionCreator(curConversionRate));
     } catch (error) {
       console.error(error);
     }
