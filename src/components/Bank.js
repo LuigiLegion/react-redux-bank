@@ -113,7 +113,7 @@ class Bank extends Component {
               type="text"
               id="customAmount"
               required
-              placeholder="Enter Custom Amount Here"
+              placeholder="Enter Custom Amount"
               onChange={this.handleChange}
             />
           </div>
