@@ -70,11 +70,15 @@ class Bank extends Component {
     return (
       <div>
         <header>
-          <img className="logo" src="/logo.jpeg" alt="React-Redux Bank" />
+          <img
+            className="logo"
+            src="/logo.jpeg"
+            alt="React-Redux International Bank"
+          />
 
           <br />
 
-          <div>React-Redux Bank</div>
+          <div>React-Redux International Bank</div>
         </header>
 
         <br />
