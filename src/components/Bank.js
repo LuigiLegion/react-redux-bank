@@ -82,28 +82,30 @@ class Bank extends Component {
         <br />
 
         <div className="atm">
-          <h1 className="balance">$ {this.props.balance}</h1>
+          <h1 className="balance">
+            {this.state.sourceCurrency} {this.props.balance}
+          </h1>
 
           <button onClick={this.handleConvert} type="button">
-            Convert to €
+            Convert to {this.state.targetCurrency}
           </button>
         </div>
 
         <div className="atm">
           <button onClick={this.props.depositFifty} type="button">
-            Deposit $50
+            Deposit {this.state.sourceCurrency} 50
           </button>
 
           <button onClick={this.props.depositHundred} type="button">
-            Deposit $100
+            Deposit {this.state.sourceCurrency} 100
           </button>
 
           <button onClick={this.props.withdrawFifty} type="button">
-            Withdraw $50
+            Withdraw {this.state.sourceCurrency} 50
           </button>
 
           <button onClick={this.props.withdrawHundred} type="button">
-            Withdraw $100
+            Withdraw {this.state.sourceCurrency} 100
           </button>
         </div>
 
