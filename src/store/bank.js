@@ -50,7 +50,7 @@ export const convertCurrencyActionCreator = conversionRate => ({
 export const convertCurrencyThunkCreator = (sourceCurrency, targetCurrency) => {
   return async dispatch => {
     try {
-      const { data } = axios.get(
+      const { data } = await axios.get(
         `https://www.freeforexapi.com/api/live?pairs=${sourceCurrency}${targetCurrency}`
       );
 
