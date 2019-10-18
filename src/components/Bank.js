@@ -54,16 +54,16 @@ class Bank extends Component {
     const newSourceCurrency = this.state.targetCurrency;
     const newTargetCurrency = this.state.sourceCurrency;
 
-    this.setState({
-      sourceCurrency: newSourceCurrency,
-      targetCurrency: newTargetCurrency,
-    });
-
     if (newSourceCurrency === '$') {
       this.props.convertCurrency('USD', 'EUR');
     } else {
       this.props.convertCurrency('EUR', 'USD');
     }
+
+    this.setState({
+      sourceCurrency: newSourceCurrency,
+      targetCurrency: newTargetCurrency,
+    });
   }
 
   render() {
