@@ -13,12 +13,15 @@ class Bank extends Component {
   constructor() {
     super();
     this.state = {
+      sourceCurrency: '$',
+      targetCurrency: '€',
       customAmount: 0,
       invalidCustomAmount: false,
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.handleConvert = this.handleConvert.bind(this);
   }
 
   handleChange(event) {
@@ -44,6 +47,16 @@ class Bank extends Component {
     }
   }
 
+  handleConvert() {
+    const newSourceCurrency = this.state.targetCurrency;
+    const newTargetCurrency = this.state.sourceCurrency;
+
+    this.setState({
+      sourceCurrency: newSourceCurrency,
+      targetCurrency: newTargetCurrency,
+    });
+  }
+
   render() {
     const { invalidCustomAmount } = this.state;
 
@@ -59,7 +72,13 @@ class Bank extends Component {
 
         <br />
 
-        <h1 className="balance">$ {this.props.balance}</h1>
+        <div className="atm">
+          <h1 className="balance">$ {this.props.balance}</h1>
+
+          <button onClick={this.props.handleConvert} type="button">
+            Convert to €
+          </button>
+        </div>
 
         <div className="atm">
           <button onClick={this.props.depositFifty} type="button">
