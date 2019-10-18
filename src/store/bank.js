@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 // Initial State
 const initialState = {
   balance: 0,
@@ -39,14 +41,25 @@ export const withdrawCustomAmountActionCreator = customAmount => ({
   customAmount,
 });
 
-export const convertCurrencyActionCreator = (
-  sourceCurrency,
-  targetCurrency
-) => ({
+export const convertCurrencyActionCreator = conversionRate => ({
   type: CONVERT_CURRENCY,
-  sourceCurrency,
-  targetCurrency,
+  conversionRate,
 });
+
+// Thunk Creators
+export const convertCurrencyThunkCreator = (sourceCurrency, targetCurrency) => {
+  return async dispatch => {
+    try {
+      const { data } = axios.get(
+        `https://www.freeforexapi.com/api/live?pairs=${sourceCurrency}${targetCurrency}`
+      );
+
+      dispatch(convertCurrencyActionCreator(data));
+    } catch (error) {
+      console.error(error);
+    }
+  };
+};
 
 // Reducer
 const bankReducer = (state = initialState, action) => {
