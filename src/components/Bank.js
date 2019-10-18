@@ -49,6 +49,8 @@ class Bank extends Component {
   }
 
   handleConvert() {
+    console.log('handleConvert');
+
     const newSourceCurrency = this.state.targetCurrency;
     const newTargetCurrency = this.state.sourceCurrency;
 
@@ -58,7 +60,9 @@ class Bank extends Component {
     });
 
     if (newSourceCurrency === '$') {
+      this.props.convertCurrency('USD', 'EUR');
     } else {
+      this.props.convertCurrency('EUR', 'USD');
     }
   }
 
@@ -80,7 +84,7 @@ class Bank extends Component {
         <div className="atm">
           <h1 className="balance">$ {this.props.balance}</h1>
 
-          <button onClick={this.props.handleConvert} type="button">
+          <button onClick={this.handleConvert} type="button">
             Convert to €
           </button>
         </div>

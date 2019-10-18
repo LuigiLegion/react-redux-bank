@@ -54,6 +54,8 @@ export const convertCurrencyThunkCreator = (sourceCurrency, targetCurrency) => {
         `https://www.freeforexapi.com/api/live?pairs=${sourceCurrency}${targetCurrency}`
       );
 
+      console.log('data: ', data);
+
       dispatch(convertCurrencyActionCreator(data));
     } catch (error) {
       console.error(error);
