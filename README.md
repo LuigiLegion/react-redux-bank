@@ -18,7 +18,7 @@ Completed in 2 days for a code-along.
 
 ### Tech Stack:
 
-Built using React, Redux, and React-Redux.
+Built using React, Redux, and React-Redux, and utilizes the Free Forex API.
 
 ### Dev Team:
 
