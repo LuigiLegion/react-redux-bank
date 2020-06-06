@@ -12,8 +12,6 @@ const DEPOSIT_CUSTOM_AMOUNT = 'DEPOSIT_CUSTOM_AMOUNT';
 const WITHDRAW_FIFTY = 'WITHDRAW_FIFTY';
 const WITHDRAW_HUNDRED = 'WITHDRAW_HUNDRED';
 const WITHDRAW_CUSTOM_AMOUNT = 'WITHDRAW_CUSTOM_AMOUNT';
-
-// Here is an additional Action to take care of currency conversions.
 const CONVERT_CURRENCY = 'CONVERT_CURRENCY';
 
 // Action Creators
@@ -43,35 +41,23 @@ export const withdrawCustomAmountActionCreator = customAmount => ({
   customAmount,
 });
 
-export const convertCurrencyActionCreator = () => ({
+export const convertCurrencyActionCreator = conversionRate => ({
   type: CONVERT_CURRENCY,
-  // What will be the payload of this Action Creator?
-
-  // Make sure you also declare a parameter to bring in said payload.
+  conversionRate,
 });
 
 // Thunk Creators
-export const convertCurrencyThunkCreator = () => {
+export const convertCurrencyThunkCreator = (sourceCurrency, targetCurrency) => {
   return async dispatch => {
     try {
       const { data } = await axios.get(
-        // cors-anywhere is a wrapper around our third-party API calls that helps us avoid CORS errors.
-
-        // Find a free third-party currency conversion API and use it in this axios.get call by adding it directly after the cors-anywhere url.
-
-        // I would recommend giving FreeForexAPI a try! (https://www.freeforexapi.com/Home/Api)
-
-        // What would the API call require for you to get a conversion rate successfully?
-
-        // Make sure you also declare parameters to bring in said requirements.
-
-        `https://cors-anywhere.herokuapp.com/`
+        `https://cors-anywhere.herokuapp.com/https://www.freeforexapi.com/api/live?pairs=${sourceCurrency}${targetCurrency}`
       );
 
-      // What do we get back from the axios call as data?
-      console.log('data: ', data);
+      const curConversionRate =
+        data.rates[sourceCurrency + targetCurrency].rate;
 
-      // What do we need to do with that data to update the balance in the store?
+      dispatch(convertCurrencyActionCreator(curConversionRate));
     } catch (error) {
       console.error(error);
     }
@@ -100,9 +86,7 @@ const bankReducer = (state = initialState, action) => {
       return { ...state, balance: state.balance - action.customAmount };
 
     case CONVERT_CURRENCY:
-      // What will we do with the action payload to update the current balance?
-
-      return { ...state };
+      return { ...state, balance: state.balance * action.conversionRate };
 
     default:
       return state;
