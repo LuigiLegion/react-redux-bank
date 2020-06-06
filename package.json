@@ -1,7 +1,10 @@
 {
-  "name": "create-react-redux-app",
-  "version": "0.1.0",
-  "private": true,
+  "name": "react-redux-app",
+  "version": "1.0.0",
+  "description": "",
+  "private": false,
+  "author": "Tal Luigi",
+  "license": "MIT",
   "dependencies": {
     "axios": "^0.19.0",
     "react": "^16.8.6",
