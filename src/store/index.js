@@ -1,10 +1,12 @@
+// Imports
 import { applyMiddleware, combineReducers, createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import { createLogger } from 'redux-logger';
 import thunkMiddleware from 'redux-thunk';
-import bankReducer from './bank';
-export * from './bank';
+import { createLogger } from 'redux-logger';
 
+import bankReducer from './bank';
+
+// Initializations
 const rootReducer = combineReducers({ bankReducer });
 
 const middleware = composeWithDevTools(
@@ -13,4 +15,6 @@ const middleware = composeWithDevTools(
 
 const store = createStore(rootReducer, middleware);
 
+// Exports
+export * from './bank';
 export default store;
