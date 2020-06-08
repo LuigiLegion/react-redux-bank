@@ -10,7 +10,7 @@ import {
   withdrawFiftyActionCreator,
   withdrawHundredActionCreator,
   convertCurrencyThunkCreator,
-} from '../store/index';
+} from '../store/reducers/bankReducer';
 
 // Component
 class Bank extends Component {
@@ -44,7 +44,7 @@ class Bank extends Component {
       });
     } else {
       this.setState({
-        customAmount: curCustomAmount,
+        customAmount: Number(curCustomAmount),
         invalidCustomAmount: false,
         disabledCustomAmount: false,
       });
@@ -175,7 +175,7 @@ class Bank extends Component {
 
 // Container
 const mapStateToProps = state => ({
-  balance: state.bankReducer.balance,
+  balance: state.bank.balance,
 });
 
 const mapDispatchToProps = dispatch => ({
