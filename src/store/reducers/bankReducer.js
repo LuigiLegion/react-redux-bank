@@ -1,3 +1,4 @@
+// Imports
 import axios from 'axios';
 
 // Initial State
@@ -5,7 +6,7 @@ const initialState = {
   balance: 0,
 };
 
-// Actions
+// Action Types
 const DEPOSIT_FIFTY = 'DEPOSIT_FIFTY';
 const DEPOSIT_HUNDRED = 'DEPOSIT_HUNDRED';
 const DEPOSIT_CUSTOM_AMOUNT = 'DEPOSIT_CUSTOM_AMOUNT';
@@ -68,29 +69,51 @@ export const convertCurrencyThunkCreator = (sourceCurrency, targetCurrency) => {
 const bankReducer = (state = initialState, action) => {
   switch (action.type) {
     case DEPOSIT_FIFTY:
-      return { ...state, balance: state.balance + 50 };
+      return {
+        ...state,
+        balance: state.balance + 50,
+      };
 
     case DEPOSIT_HUNDRED:
-      return { ...state, balance: state.balance + 100 };
+      return {
+        ...state,
+        balance: state.balance + 100,
+      };
 
     case DEPOSIT_CUSTOM_AMOUNT:
-      return { ...state, balance: state.balance + action.customAmount };
+      return {
+        ...state,
+        balance: state.balance + action.customAmount,
+      };
 
     case WITHDRAW_FIFTY:
-      return { ...state, balance: state.balance - 50 };
+      return {
+        ...state,
+        balance: state.balance - 50,
+      };
 
     case WITHDRAW_HUNDRED:
-      return { ...state, balance: state.balance - 100 };
+      return {
+        ...state,
+        balance: state.balance - 100,
+      };
 
     case WITHDRAW_CUSTOM_AMOUNT:
-      return { ...state, balance: state.balance - action.customAmount };
+      return {
+        ...state,
+        balance: state.balance - action.customAmount,
+      };
 
     case CONVERT_CURRENCY:
-      return { ...state, balance: state.balance * action.conversionRate };
+      return {
+        ...state,
+        balance: state.balance * action.conversionRate,
+      };
 
     default:
       return state;
   }
 };
 
+// Exports
 export default bankReducer;

@@ -1,12 +1,15 @@
+// Imports
 import React from 'react';
+
 import Bank from './components/Bank';
 
-const App = props => {
+// Component
+function App() {
   return (
     <div>
       <Bank />
     </div>
   );
-};
+}
 
 export default App;
