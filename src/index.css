@@ -34,7 +34,7 @@ header {
   }
 }
 
-.terminal {
+.atm {
   padding: 1em 0em;
 }
 
@@ -42,7 +42,7 @@ header {
   font-size: 25px;
 }
 
-.atm {
+.terminal {
   background-color: #61dbfb;
   width: 320px;
   border-radius: 10px;
@@ -50,7 +50,7 @@ header {
   margin: 10px auto;
 }
 
-.atm button {
+.terminal button {
   font-size: 12px;
   width: 150px;
   height: 56px;
