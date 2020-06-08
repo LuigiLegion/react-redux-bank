@@ -1,37 +1,20 @@
 body {
+  color: #ffffff;
   background-color: #764abc;
-  color: #fff;
   font-family: 'Myriad Pro', Helvetica, Arial, sans-serif;
   text-align: center;
-  margin: 0;
-  padding-bottom: 2%;
+  margin: 0em;
 }
 
 header {
-  background-color: #61dbfb;
   color: #764abc;
-  font-size: 30px;
-  width: 98.5%;
-  padding: 15px;
-}
-
-.atm {
   background-color: #61dbfb;
-  width: 320px;
-  border-radius: 10px;
-  margin: 10px auto 0 auto;
-  padding: 20px;
-}
-
-.atm button {
-  height: 56px;
-  width: 150px;
-  margin: 6px 2px;
-  padding: 20px 30px;
-}
-
-.balance {
   font-size: 30px;
+  padding: 1em;
+}
+
+.text-style-bold {
+  font-weight: bold;
 }
 
 .logo {
@@ -39,6 +22,7 @@ header {
   border-radius: 50%;
   animation: App-logo-spin infinite 20s linear;
   pointer-events: none;
+  padding: 0.5em;
 }
 
 @keyframes App-logo-spin {
@@ -50,6 +34,34 @@ header {
   }
 }
 
-#customAmount {
-  width: 36%;
+.terminal {
+  padding: 1em 0em;
+}
+
+.balance {
+  font-size: 25px;
+}
+
+.atm {
+  background-color: #61dbfb;
+  width: 320px;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 10px auto;
+}
+
+.atm button {
+  font-size: 12px;
+  width: 150px;
+  height: 56px;
+  padding: 20px 30px;
+  margin: 6px 2px;
+}
+
+.custom-amount-container {
+  margin: 6px 2px;
+}
+
+.custom-amount-containee {
+  margin-bottom: 1em;
 }
