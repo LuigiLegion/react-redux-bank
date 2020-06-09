@@ -2,18 +2,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import {} from '../store/reducers/bankReducer';
+import { depositFiftyActionCreator } from '../store/reducers/bankReducer';
 
 // Component
-function Atm() {
+function Atm(props) {
+  console.log({ props });
+
   return (
     <div className="atm">
       <div className="terminal">
-        <h1 className="balance">$ 0</h1>
+        <h1 className="balance">$ {props.balance}</h1>
       </div>
 
       <div className="terminal">
-        <button type="button" onClick={() => console.log('Deposit $ 50')}>
+        <button type="button" onClick={() => props.depositFiftyAction()}>
           Deposit $ 50
         </button>
 
@@ -37,13 +39,19 @@ function Atm() {
 const mapStateToProps = state => {
   console.log('state in mapStateToProps: ', state);
 
-  return {};
+  return {
+    balance: state.bank.balance,
+  };
 };
 
 const mapDispatchToProps = dispatch => {
   console.log('dispatch in mapDispatchToProps: ', dispatch);
 
-  return {};
+  return {
+    depositFiftyAction() {
+      dispatch(depositFiftyActionCreator());
+    },
+  };
 };
 // Please refactor mapStateToProps and mapDispatchToProps into implicitly returning functions rather than explicitly returning ones once you get everything up and running
 
