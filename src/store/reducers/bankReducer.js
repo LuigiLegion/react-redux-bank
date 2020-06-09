@@ -1,7 +1,7 @@
 // Initial State
 const initialState = {};
 
-// Actions
+// Actions Types
 
 // Action Creators
 
@@ -15,4 +15,5 @@ const bankReducer = (state = initialState, action) => {
   }
 };
 
+// Exports
 export default bankReducer;
