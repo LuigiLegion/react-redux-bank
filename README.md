@@ -12,7 +12,7 @@ https://react-redux-bank.web.app
 
 ### Description:
 
-Educational workshop that goes through the steps of setting up a mock bank app using React, Redux, and React-Redux.
+Educational workshop that goes through the steps of setting up a mock bank web app using React, Redux, and React-Redux.
 
 Completed in 2 days for a code-along.
 
