@@ -36,6 +36,38 @@ function Atm(props) {
           Withdraw $ 100
         </button>
       </div>
+
+      <div className="terminal">
+        <div className="custom-amount-container">
+          <input
+            className="custom-amount-containee"
+            type="text"
+            placeholder="Enter Custom Amount"
+            required
+            onChange={event => console.log(event.target.value)}
+          />
+        </div>
+
+        <button
+          type="button"
+          value="Deposit"
+          disabled={false}
+          onClick={() => console.log('Deposit Custom Amount')}
+        >
+          Deposit $
+        </button>
+
+        <button
+          type="button"
+          value="Withdraw"
+          disabled={false}
+          onClick={() => console.log('Withdraw Custom Amount')}
+        >
+          Withdraw $
+        </button>
+      </div>
+
+      <div className="terminal">Invalid Custom Amount! Please Try Again.</div>
     </div>
   );
 }
