@@ -2,7 +2,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { depositFiftyActionCreator } from '../store/reducers/bankReducer';
+import {
+  depositFiftyActionCreator,
+  depositHundredActionCreator,
+  withdrawFiftyActionCreator,
+  withdrawHundredActionCreator,
+} from '../store/reducers/bankReducer';
 
 // Component
 function Atm(props) {
@@ -19,15 +24,15 @@ function Atm(props) {
           Deposit $ 50
         </button>
 
-        <button type="button" onClick={() => console.log('Withdraw $ 50')}>
+        <button type="button" onClick={() => props.withdrawFiftyAction()}>
           Withdraw $ 50
         </button>
 
-        <button type="button" onClick={() => console.log('Deposit $ 100')}>
+        <button type="button" onClick={() => props.depositHundredAction()}>
           Deposit $ 100
         </button>
 
-        <button type="button" onClick={() => console.log('Withdraw $ 100')}>
+        <button type="button" onClick={() => props.withdrawHundredAction()}>
           Withdraw $ 100
         </button>
       </div>
@@ -50,6 +55,15 @@ const mapDispatchToProps = dispatch => {
   return {
     depositFiftyAction() {
       dispatch(depositFiftyActionCreator());
+    },
+    depositHundredAction() {
+      dispatch(depositHundredActionCreator());
+    },
+    withdrawFiftyAction() {
+      dispatch(withdrawFiftyActionCreator());
+    },
+    withdrawHundredAction() {
+      dispatch(withdrawHundredActionCreator());
     },
   };
 };
