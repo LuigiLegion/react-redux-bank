@@ -16,38 +16,76 @@ class Atm extends Component {
   constructor() {
     super();
     this.state = {
+      // Here are two additional fields in local state - sourceCurrency and targetCurrency.
+
+      // Please use them to show users the correct currency symbol throughout the app every time they convert their currency, rather than hardcode it.
+      sourceCurrency: '$',
+      targetCurrency: '€',
       customAmount: 0,
-      validCustomAmount: true,
+      invalidCustomAmount: false,
       disabledCustomAmount: true,
     };
 
     this.handleChange = this.handleChange.bind(this);
+    this.handleConvert = this.handleConvert.bind(this);
   }
 
   handleChange(event) {
     const curCustomAmount = event.target.value;
 
-    if (!isNaN(curCustomAmount) && curCustomAmount.length !== 0) {
+    if (!curCustomAmount.length) {
       this.setState({
-        customAmount: Number(curCustomAmount),
-        validCustomAmount: true,
-        disabledCustomAmount: false,
+        invalidCustomAmount: false,
+        disabledCustomAmount: true,
+      });
+    } else if (isNaN(Number(curCustomAmount))) {
+      this.setState({
+        invalidCustomAmount: true,
+        disabledCustomAmount: true,
       });
     } else {
       this.setState({
-        validCustomAmount: false,
-        disabledCustomAmount: true,
+        customAmount: Number(curCustomAmount),
+        invalidCustomAmount: false,
+        disabledCustomAmount: false,
       });
     }
   }
 
-  render() {
-    console.log(this.props);
+  handleConvert() {
+    console.log('Convert Currency');
 
+    if (this.state.sourceCurrency === '$') {
+      // Don't forget to plug in your Thunk after you map your Thunk Creator to props.
+    } else {
+      // Remember, currency conversion can go both ways.
+    }
+
+    // Make sure you swap the sourceCurrency and targetCurrency every time you convert.
+    this.setState(prevState => {
+      console.log({ prevState });
+
+      return {};
+    });
+  }
+
+  render() {
     return (
       <div className="atm">
         <div className="terminal">
+          {/*
+            What is wrong with the way we are bringing in the balance after converting it?
+
+            Look into the toFixed method
+            (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed)
+            */}
           <h1 className="balance">$ {this.props.balance}</h1>
+
+          <button type="button" onClick={this.handleConvert}>
+            <span>Convert to </span>
+
+            <span className="text-style-bold">€</span>
+          </button>
         </div>
 
         <div className="terminal">
@@ -111,11 +149,11 @@ class Atm extends Component {
           </button>
         </div>
 
-        {this.state.validCustomAmount ? null : (
+        {this.state.invalidCustomAmount ? (
           <div className="terminal">
             Invalid Custom Amount! Please Try Again.
           </div>
-        )}
+        ) : null}
       </div>
     );
   }
@@ -151,6 +189,15 @@ const mapDispatchToProps = dispatch => {
     },
     withdrawCustomAmountAction(customAmount) {
       dispatch(withdrawCustomAmountActionCreator(customAmount));
+    },
+    // Make sure you import your newly made Thunk Creator and plug it into mapDispatchToProps properly.
+    convertCurrencyThunk() {
+      // Will this thunk receive arguments?
+
+      // If so, make sure you declare parameters to bring in said arguments.
+
+      // Don't forget to pass them into dispatch properly.
+      dispatch();
     },
   };
 };
