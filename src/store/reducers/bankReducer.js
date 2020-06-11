@@ -55,10 +55,9 @@ export const convertCurrencyThunkCreator = (sourceCurrency, targetCurrency) => {
         `https://cors-anywhere.herokuapp.com/https://www.freeforexapi.com/api/live?pairs=${sourceCurrency}${targetCurrency}`
       );
 
-      const curConversionRate =
-        data.rates[sourceCurrency + targetCurrency].rate;
+      const conversionRate = data.rates[sourceCurrency + targetCurrency].rate;
 
-      dispatch(convertCurrencyActionCreator(curConversionRate));
+      dispatch(convertCurrencyActionCreator(conversionRate));
     } catch (error) {
       console.error(error);
     }
