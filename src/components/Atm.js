@@ -67,6 +67,7 @@ class Atm extends Component {
 
       return {};
     });
+    // Please refactor setState's callback function into an implicitly returning function rather than an explicitly returning one once you get everything up and running.
   }
 
   render() {
@@ -199,7 +200,7 @@ const mapDispatchToProps = dispatch => {
     },
   };
 };
-// Please refactor mapStateToProps and mapDispatchToProps into implicitly returning functions rather than explicitly returning ones once you get everything up and running
+// Please refactor mapStateToProps and mapDispatchToProps into implicitly returning functions rather than explicitly returning ones once you get everything up and running.
 
 export default connect(
   mapStateToProps,
