@@ -128,7 +128,6 @@ class Atm extends Component {
 
           <button
             type="button"
-            value="Deposit"
             disabled={this.state.disabledCustomAmount}
             onClick={() =>
               this.props.depositCustomAmountAction(this.state.customAmount)
@@ -139,7 +138,6 @@ class Atm extends Component {
 
           <button
             type="button"
-            value="Withdraw"
             disabled={this.state.disabledCustomAmount}
             onClick={() =>
               this.props.withdrawCustomAmountAction(this.state.customAmount)
