@@ -11,8 +11,6 @@ import {
 
 // Component
 function Atm(props) {
-  console.log({ props });
-
   return (
     <div className="atm">
       <div className="terminal">
@@ -50,7 +48,6 @@ function Atm(props) {
 
         <button
           type="button"
-          value="Deposit"
           disabled={false}
           onClick={() => console.log('Deposit Custom Amount')}
         >
@@ -59,7 +56,6 @@ function Atm(props) {
 
         <button
           type="button"
-          value="Withdraw"
           disabled={false}
           onClick={() => console.log('Withdraw Custom Amount')}
         >
