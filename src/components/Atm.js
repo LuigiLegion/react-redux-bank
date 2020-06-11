@@ -25,7 +25,6 @@ class Atm extends Component {
     };
 
     this.handleChange = this.handleChange.bind(this);
-    this.handleClick = this.handleClick.bind(this);
     this.handleConvert = this.handleConvert.bind(this);
   }
 
@@ -51,16 +50,6 @@ class Atm extends Component {
     }
   }
 
-  handleClick(event) {
-    const curButtonType = event.target.value;
-
-    if (curButtonType === 'Deposit') {
-      this.props.depositCustomAmountAction(this.state.customAmount);
-    } else if (curButtonType === 'Withdraw') {
-      this.props.withdrawCustomAmountAction(this.state.customAmount);
-    }
-  }
-
   handleConvert() {
     if (this.state.sourceCurrency === '$') {
       this.props.convertCurrencyThunk('USD', 'EUR');
@@ -78,6 +67,7 @@ class Atm extends Component {
     const {
       sourceCurrency,
       targetCurrency,
+      customAmount,
       invalidCustomAmount,
       disabledCustomAmount,
     } = this.state;
@@ -85,8 +75,10 @@ class Atm extends Component {
       balance,
       depositFiftyAction,
       depositHundredAction,
+      depositCustomAmountAction,
       withdrawFiftyAction,
       withdrawHundredAction,
+      withdrawCustomAmountAction,
     } = this.props;
 
     return (
@@ -96,7 +88,7 @@ class Atm extends Component {
             {sourceCurrency} {balance.toFixed(2)}
           </h1>
 
-          <button onClick={this.handleConvert} type="button">
+          <button type="button" onClick={this.handleConvert}>
             <span>Convert to </span>
 
             <span className="text-style-bold">{targetCurrency}</span>
@@ -134,18 +126,16 @@ class Atm extends Component {
 
           <button
             type="button"
-            value="Deposit"
             disabled={disabledCustomAmount}
-            onClick={this.handleClick}
+            onClick={() => depositCustomAmountAction(customAmount)}
           >
             Deposit {sourceCurrency}
           </button>
 
           <button
             type="button"
-            value="Withdraw"
             disabled={disabledCustomAmount}
-            onClick={this.handleClick}
+            onClick={() => withdrawCustomAmountAction(customAmount)}
           >
             Withdraw {sourceCurrency}
           </button>
