@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 
 import {
+  getBalanceAndTransactionsActionCreator,
   depositCustomAmountActionCreator,
   depositFiftyActionCreator,
   depositHundredActionCreator,
@@ -28,6 +29,41 @@ class Atm extends Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleConvert = this.handleConvert.bind(this);
+  }
+
+  componentDidMount() {
+    if (localStorage.reactReduxBank) {
+      try {
+        const cache = localStorage.getItem('reactReduxBank');
+        const {
+          balance,
+          transactions,
+          sourceCurrency,
+          targetCurrency,
+        } = JSON.parse(cache);
+
+        this.props.getBalanceAndTransactionsAction(balance, transactions);
+
+        this.setState({
+          sourceCurrency,
+          targetCurrency,
+        });
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  }
+
+  componentDidUpdate() {
+    localStorage.setItem(
+      'reactReduxBank',
+      JSON.stringify({
+        balance: this.props.balance,
+        transactions: this.props.transactions,
+        sourceCurrency: this.state.sourceCurrency,
+        targetCurrency: this.state.targetCurrency,
+      })
+    );
   }
 
   handleChange(event) {
@@ -222,6 +258,9 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
+  getBalanceAndTransactionsAction(balance, transactions) {
+    dispatch(getBalanceAndTransactionsActionCreator(balance, transactions));
+  },
   depositFiftyAction(sourceCurrency) {
     dispatch(depositFiftyActionCreator(sourceCurrency));
   },
@@ -249,6 +288,7 @@ const mapDispatchToProps = dispatch => ({
 Atm.propTypes = {
   balance: PropTypes.number,
   transactions: PropTypes.array,
+  getBalanceAndTransactionsAction: PropTypes.func,
   depositFiftyAction: PropTypes.func,
   depositHundredAction: PropTypes.func,
   depositCustomAmountAction: PropTypes.func,
