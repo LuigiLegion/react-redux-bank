@@ -67,21 +67,22 @@ class Atm extends Component {
   }
 
   handleChange(event) {
-    const curCustomAmount = event.target.value;
+    const curCustomAmountStr = event.target.value;
+    const curCustomAmountNum = Number(curCustomAmountStr);
 
-    if (!curCustomAmount.length) {
+    if (!curCustomAmountStr.length) {
       this.setState({
         invalidCustomAmount: false,
         disabledCustomAmount: true,
       });
-    } else if (isNaN(Number(curCustomAmount))) {
+    } else if (isNaN(curCustomAmountNum) || curCustomAmountNum <= 0) {
       this.setState({
         invalidCustomAmount: true,
         disabledCustomAmount: true,
       });
     } else {
       this.setState({
-        customAmount: Number(curCustomAmount),
+        customAmount: curCustomAmountNum,
         invalidCustomAmount: false,
         disabledCustomAmount: false,
       });
