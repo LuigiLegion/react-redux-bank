@@ -1,6 +1,8 @@
 // Imports
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import moment from 'moment';
 
 import {
   depositCustomAmountActionCreator,
@@ -58,6 +60,7 @@ class Atm extends Component {
     }
 
     this.setState(prevState => ({
+      ...prevState,
       sourceCurrency: prevState.targetCurrency,
       targetCurrency: prevState.sourceCurrency,
     }));
@@ -73,6 +76,7 @@ class Atm extends Component {
     } = this.state;
     const {
       balance,
+      transactions,
       depositFiftyAction,
       depositHundredAction,
       depositCustomAmountAction,
@@ -96,19 +100,31 @@ class Atm extends Component {
         </div>
 
         <div className="terminal">
-          <button type="button" onClick={depositFiftyAction}>
+          <button
+            type="button"
+            onClick={() => depositFiftyAction(sourceCurrency)}
+          >
             Deposit {sourceCurrency} 50
           </button>
 
-          <button type="button" onClick={withdrawFiftyAction}>
+          <button
+            type="button"
+            onClick={() => withdrawFiftyAction(sourceCurrency)}
+          >
             Withdraw {sourceCurrency} 50
           </button>
 
-          <button type="button" onClick={depositHundredAction}>
+          <button
+            type="button"
+            onClick={() => depositHundredAction(sourceCurrency)}
+          >
             Deposit {sourceCurrency} 100
           </button>
 
-          <button type="button" onClick={withdrawHundredAction}>
+          <button
+            type="button"
+            onClick={() => withdrawHundredAction(sourceCurrency)}
+          >
             Withdraw {sourceCurrency} 100
           </button>
         </div>
@@ -127,7 +143,9 @@ class Atm extends Component {
           <button
             type="button"
             disabled={disabledCustomAmount}
-            onClick={() => depositCustomAmountAction(customAmount)}
+            onClick={() =>
+              depositCustomAmountAction(sourceCurrency, customAmount)
+            }
           >
             Deposit {sourceCurrency}
           </button>
@@ -135,7 +153,9 @@ class Atm extends Component {
           <button
             type="button"
             disabled={disabledCustomAmount}
-            onClick={() => withdrawCustomAmountAction(customAmount)}
+            onClick={() =>
+              withdrawCustomAmountAction(sourceCurrency, customAmount)
+            }
           >
             Withdraw {sourceCurrency}
           </button>
@@ -146,6 +166,50 @@ class Atm extends Component {
             Invalid Custom Amount! Please Try Again.
           </div>
         ) : null}
+
+        <div className="terminal">
+          {transactions && transactions.length ? (
+            <table>
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Type</th>
+                  <th>Amount</th>
+                  <th>Balance</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                {transactions.map(transaction => (
+                  <tr key={transaction.date}>
+                    <td>{moment(transaction.date).format('L')}</td>
+                    <td>{transaction.type}</td>
+                    <td>
+                      {`${
+                        transaction.type === 'Deposit'
+                          ? `+${
+                              transaction.currency
+                            }${transaction.amount.toFixed(2)}`
+                          : transaction.type === 'Withdraw'
+                          ? `-${
+                              transaction.currency
+                            }${transaction.amount.toFixed(2)}`
+                          : transaction.amount
+                      }`}
+                    </td>
+                    <td>
+                      {`${transaction.currency}${transaction.balance.toFixed(
+                        2
+                      )}`}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          ) : (
+            <div>No transactions were found.</div>
+          )}
+        </div>
       </div>
     );
   }
@@ -154,31 +218,45 @@ class Atm extends Component {
 // Container
 const mapStateToProps = state => ({
   balance: state.bank.balance,
+  transactions: state.bank.transactions,
 });
 
 const mapDispatchToProps = dispatch => ({
-  depositFiftyAction() {
-    dispatch(depositFiftyActionCreator());
+  depositFiftyAction(sourceCurrency) {
+    dispatch(depositFiftyActionCreator(sourceCurrency));
   },
-  depositHundredAction() {
-    dispatch(depositHundredActionCreator());
+  depositHundredAction(sourceCurrency) {
+    dispatch(depositHundredActionCreator(sourceCurrency));
   },
-  depositCustomAmountAction(customAmount) {
-    dispatch(depositCustomAmountActionCreator(customAmount));
+  depositCustomAmountAction(sourceCurrency, customAmount) {
+    dispatch(depositCustomAmountActionCreator(sourceCurrency, customAmount));
   },
-  withdrawFiftyAction() {
-    dispatch(withdrawFiftyActionCreator());
+  withdrawFiftyAction(sourceCurrency) {
+    dispatch(withdrawFiftyActionCreator(sourceCurrency));
   },
-  withdrawHundredAction() {
-    dispatch(withdrawHundredActionCreator());
+  withdrawHundredAction(sourceCurrency) {
+    dispatch(withdrawHundredActionCreator(sourceCurrency));
   },
-  withdrawCustomAmountAction(customAmount) {
-    dispatch(withdrawCustomAmountActionCreator(customAmount));
+  withdrawCustomAmountAction(sourceCurrency, customAmount) {
+    dispatch(withdrawCustomAmountActionCreator(sourceCurrency, customAmount));
   },
   convertCurrencyThunk(sourceCurrency, targetCurrency) {
     dispatch(convertCurrencyThunkCreator(sourceCurrency, targetCurrency));
   },
 });
+
+// Prop Types
+Atm.propTypes = {
+  balance: PropTypes.number,
+  transactions: PropTypes.array,
+  depositFiftyAction: PropTypes.func,
+  depositHundredAction: PropTypes.func,
+  depositCustomAmountAction: PropTypes.func,
+  withdrawFiftyAction: PropTypes.func,
+  withdrawHundredAction: PropTypes.func,
+  withdrawCustomAmountAction: PropTypes.func,
+  convertCurrencyThunk: PropTypes.func,
+};
 
 export default connect(
   mapStateToProps,

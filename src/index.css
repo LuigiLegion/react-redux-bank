@@ -13,6 +13,10 @@ header {
   padding: 1em;
 }
 
+table {
+  margin: 0em auto;
+}
+
 .text-style-bold {
   font-weight: bold;
 }
