@@ -31,9 +31,28 @@ class Atm extends Component {
     this.handleConvert = this.handleConvert.bind(this);
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    if (localStorage.reactReduxBank) {
+      try {
+        const cache = localStorage.getItem('reactReduxBank');
+        const { balance, transactions } = JSON.parse(cache);
 
-  componentDidUpdate() {}
+        this.props.getBalanceAndTransactionsAction(balance, transactions);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  }
+
+  componentDidUpdate() {
+    localStorage.setItem(
+      'reactReduxBank',
+      JSON.stringify({
+        balance: this.props.balance,
+        transactions: this.props.transactions,
+      })
+    );
+  }
 
   handleChange(event) {
     const curCustomAmount = event.target.value;
