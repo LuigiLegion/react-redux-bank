@@ -35,9 +35,19 @@ class Atm extends Component {
     if (localStorage.reactReduxBank) {
       try {
         const cache = localStorage.getItem('reactReduxBank');
-        const { balance, transactions } = JSON.parse(cache);
+        const {
+          balance,
+          transactions,
+          sourceCurrency,
+          targetCurrency,
+        } = JSON.parse(cache);
 
         this.props.getBalanceAndTransactionsAction(balance, transactions);
+
+        this.setState({
+          sourceCurrency,
+          targetCurrency,
+        });
       } catch (error) {
         console.error(error);
       }
@@ -50,6 +60,8 @@ class Atm extends Component {
       JSON.stringify({
         balance: this.props.balance,
         transactions: this.props.transactions,
+        sourceCurrency: this.state.sourceCurrency,
+        targetCurrency: this.state.targetCurrency,
       })
     );
   }
