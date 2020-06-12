@@ -98,114 +98,49 @@ const bankReducer = (state = initialState, action) => {
       return {
         ...state,
         balance: state.balance + 50,
-        transactions: [
-          {
-            date: Date.now(),
-            type: 'Deposit',
-            amount: 50,
-            balance: state.balance + 50,
-            currency: action.sourceCurrency,
-          },
-          ...state.transactions,
-        ],
+        transactions: [],
       };
 
     case DEPOSIT_HUNDRED:
       return {
         ...state,
         balance: state.balance + 100,
-        transactions: [
-          {
-            date: Date.now(),
-            type: 'Deposit',
-            amount: 100,
-            balance: state.balance + 100,
-            currency: action.sourceCurrency,
-          },
-          ...state.transactions,
-        ],
+        transactions: [],
       };
 
     case DEPOSIT_CUSTOM_AMOUNT:
       return {
         ...state,
         balance: state.balance + action.customAmount,
-        transactions: [
-          {
-            date: Date.now(),
-            type: 'Deposit',
-            amount: action.customAmount,
-            balance: state.balance + action.customAmount,
-            currency: action.sourceCurrency,
-          },
-          ...state.transactions,
-        ],
+        transactions: [],
       };
 
     case WITHDRAW_FIFTY:
       return {
         ...state,
         balance: state.balance - 50,
-        transactions: [
-          {
-            date: Date.now(),
-            type: 'Withdraw',
-            amount: 50,
-            balance: state.balance - 50,
-            currency: action.sourceCurrency,
-          },
-          ...state.transactions,
-        ],
+        transactions: [],
       };
 
     case WITHDRAW_HUNDRED:
       return {
         ...state,
         balance: state.balance - 100,
-        transactions: [
-          {
-            date: Date.now(),
-            type: 'Withdraw',
-            amount: 100,
-            balance: state.balance - 100,
-            currency: action.sourceCurrency,
-          },
-          ...state.transactions,
-        ],
+        transactions: [],
       };
 
     case WITHDRAW_CUSTOM_AMOUNT:
       return {
         ...state,
         balance: state.balance - action.customAmount,
-        transactions: [
-          {
-            date: Date.now(),
-            type: 'Withdraw',
-            amount: action.customAmount,
-            balance: state.balance - action.customAmount,
-            currency: action.sourceCurrency,
-          },
-          ...state.transactions,
-        ],
+        transactions: [],
       };
 
     case CONVERT_CURRENCY:
       return {
         ...state,
         balance: state.balance * action.conversionRate,
-        transactions: [
-          {
-            date: Date.now(),
-            type: `Conversion (${action.sourceCurrency} to ${action.targetCurrency})`,
-            amount: `${action.conversionRate.toFixed(2)} ${
-              action.targetCurrency
-            } / 1 ${action.sourceCurrency}`,
-            balance: state.balance * action.conversionRate,
-            currency: action.targetCurrency === 'USD' ? '$' : '€',
-          },
-          ...state.transactions,
-        ],
+        transactions: [],
       };
 
     default:
