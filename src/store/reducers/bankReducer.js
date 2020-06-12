@@ -10,6 +10,7 @@ const initialState = {
 };
 
 // Action Types
+const GET_BALANCE_AND_TRANSACTIONS = 'GET_BALANCE_AND_TRANSACTIONS';
 const DEPOSIT_FIFTY = 'DEPOSIT_FIFTY';
 const DEPOSIT_HUNDRED = 'DEPOSIT_HUNDRED';
 const DEPOSIT_CUSTOM_AMOUNT = 'DEPOSIT_CUSTOM_AMOUNT';
@@ -19,6 +20,15 @@ const WITHDRAW_CUSTOM_AMOUNT = 'WITHDRAW_CUSTOM_AMOUNT';
 const CONVERT_CURRENCY = 'CONVERT_CURRENCY';
 
 // Action Creators
+export const getBalanceAndTransactionsActionCreator = (
+  balance,
+  transactions
+) => ({
+  type: GET_BALANCE_AND_TRANSACTIONS,
+  balance,
+  transactions,
+});
+
 export const depositFiftyActionCreator = sourceCurrency => ({
   type: DEPOSIT_FIFTY,
   sourceCurrency,
@@ -94,6 +104,13 @@ export const convertCurrencyThunkCreator = (sourceCurrency, targetCurrency) => {
 // Reducer
 const bankReducer = (state = initialState, action) => {
   switch (action.type) {
+    case GET_BALANCE_AND_TRANSACTIONS:
+      return {
+        ...state,
+        balance: action.balance,
+        transactions: action.transactions,
+      };
+
     case DEPOSIT_FIFTY:
       return {
         ...state,
