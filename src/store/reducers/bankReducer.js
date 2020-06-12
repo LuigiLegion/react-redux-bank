@@ -105,11 +105,7 @@ export const convertCurrencyThunkCreator = (sourceCurrency, targetCurrency) => {
 const bankReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_BALANCE_AND_TRANSACTIONS:
-      return {
-        ...state,
-        balance: action.balance,
-        transactions: action.transactions,
-      };
+      return {};
 
     case DEPOSIT_FIFTY:
       return {
