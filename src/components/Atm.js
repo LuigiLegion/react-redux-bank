@@ -67,22 +67,23 @@ class Atm extends Component {
   }
 
   handleChange(event) {
-    const curCustomAmountStr = event.target.value;
-    const curCustomAmountNum = Number(curCustomAmountStr);
+    const curCustomAmount = event.target.value;
+    // Lines 79 and 86 have code that repeats itself. How would you go about making this code more DRY?
 
-    if (!curCustomAmountStr.length) {
+    if (!curCustomAmount.length) {
       this.setState({
         invalidCustomAmount: false,
         disabledCustomAmount: true,
       });
-    } else if (isNaN(curCustomAmountNum) || curCustomAmountNum <= 0) {
+      // How would you change the following conditional to make it so users can't deposit or withdraw 0 or a negative amount?
+    } else if (isNaN(Number(curCustomAmount))) {
       this.setState({
         invalidCustomAmount: true,
         disabledCustomAmount: true,
       });
     } else {
       this.setState({
-        customAmount: curCustomAmountNum,
+        customAmount: Number(curCustomAmount),
         invalidCustomAmount: false,
         disabledCustomAmount: false,
       });
