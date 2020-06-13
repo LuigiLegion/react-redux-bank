@@ -23,11 +23,13 @@ class Atm extends Component {
       sourceCurrency: '$',
       targetCurrency: '€',
       customAmount: 0,
-      invalidCustomAmount: false,
+      invalidAmount: false,
       disabledCustomAmount: true,
     };
 
     this.handleChange = this.handleChange.bind(this);
+    this.handleDeposit = this.handleDeposit.bind(this);
+    this.handleWithdraw = this.handleWithdraw.bind(this);
     this.handleConvert = this.handleConvert.bind(this);
   }
 
@@ -72,20 +74,64 @@ class Atm extends Component {
 
     if (!curCustomAmountStr.length) {
       this.setState({
-        invalidCustomAmount: false,
+        invalidAmount: false,
         disabledCustomAmount: true,
       });
     } else if (isNaN(curCustomAmountNum) || curCustomAmountNum <= 0) {
       this.setState({
-        invalidCustomAmount: true,
+        invalidAmount: true,
         disabledCustomAmount: true,
       });
     } else {
       this.setState({
         customAmount: curCustomAmountNum,
-        invalidCustomAmount: false,
+        invalidAmount: false,
         disabledCustomAmount: false,
       });
+    }
+  }
+
+  handleDeposit(event) {
+    const curAmount = Number(event.target.value);
+
+    this.setState({ invalidAmount: false });
+
+    switch (curAmount) {
+      case 50:
+        return this.props.depositFiftyAction(this.state.sourceCurrency);
+
+      case 100:
+        return this.props.depositHundredAction(this.state.sourceCurrency);
+
+      default:
+        return this.props.depositCustomAmountAction(
+          this.state.sourceCurrency,
+          this.state.customAmount
+        );
+    }
+  }
+
+  handleWithdraw(event) {
+    const curAmount = Number(event.target.value);
+
+    if (this.props.balance - curAmount >= 0) {
+      this.setState({ invalidAmount: false });
+
+      switch (curAmount) {
+        case 50:
+          return this.props.withdrawFiftyAction(this.state.sourceCurrency);
+
+        case 100:
+          return this.props.withdrawHundredAction(this.state.sourceCurrency);
+
+        default:
+          return this.props.withdrawCustomAmountAction(
+            this.state.sourceCurrency,
+            this.state.customAmount
+          );
+      }
+    } else {
+      this.setState({ invalidAmount: true });
     }
   }
 
@@ -108,19 +154,10 @@ class Atm extends Component {
       sourceCurrency,
       targetCurrency,
       customAmount,
-      invalidCustomAmount,
+      invalidAmount,
       disabledCustomAmount,
     } = this.state;
-    const {
-      balance,
-      transactions,
-      depositFiftyAction,
-      depositHundredAction,
-      depositCustomAmountAction,
-      withdrawFiftyAction,
-      withdrawHundredAction,
-      withdrawCustomAmountAction,
-    } = this.props;
+    const { balance, transactions } = this.props;
 
     return (
       <div className="atm">
@@ -137,31 +174,19 @@ class Atm extends Component {
         </div>
 
         <div className="terminal">
-          <button
-            type="button"
-            onClick={() => depositFiftyAction(sourceCurrency)}
-          >
+          <button type="button" value="50" onClick={this.handleDeposit}>
             Deposit {sourceCurrency} 50
           </button>
 
-          <button
-            type="button"
-            onClick={() => withdrawFiftyAction(sourceCurrency)}
-          >
+          <button type="button" value="50" onClick={this.handleWithdraw}>
             Withdraw {sourceCurrency} 50
           </button>
 
-          <button
-            type="button"
-            onClick={() => depositHundredAction(sourceCurrency)}
-          >
+          <button type="button" value="100" onClick={this.handleDeposit}>
             Deposit {sourceCurrency} 100
           </button>
 
-          <button
-            type="button"
-            onClick={() => withdrawHundredAction(sourceCurrency)}
-          >
+          <button type="button" value="100" onClick={this.handleWithdraw}>
             Withdraw {sourceCurrency} 100
           </button>
         </div>
@@ -179,29 +204,25 @@ class Atm extends Component {
 
           <button
             type="button"
+            value={customAmount}
             disabled={disabledCustomAmount}
-            onClick={() =>
-              depositCustomAmountAction(sourceCurrency, customAmount)
-            }
+            onClick={this.handleDeposit}
           >
             Deposit {sourceCurrency}
           </button>
 
           <button
             type="button"
+            value={customAmount}
             disabled={disabledCustomAmount}
-            onClick={() =>
-              withdrawCustomAmountAction(sourceCurrency, customAmount)
-            }
+            onClick={this.handleWithdraw}
           >
             Withdraw {sourceCurrency}
           </button>
         </div>
 
-        {invalidCustomAmount ? (
-          <div className="terminal">
-            Invalid Custom Amount! Please Try Again.
-          </div>
+        {invalidAmount ? (
+          <div className="terminal">Invalid Amount! Please Try Again.</div>
         ) : null}
 
         <div className="terminal">
