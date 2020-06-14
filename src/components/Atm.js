@@ -45,7 +45,7 @@ const mapDispatchToProps = dispatch => {
 
   return {};
 };
-// Please refactor mapStateToProps and mapDispatchToProps into implicitly returning functions rather than explicitly returning ones once you get everything up and running
+// Please refactor mapStateToProps and mapDispatchToProps into implicitly returning functions rather than explicitly returning ones once you get everything up and running.
 
 export default connect(
   mapStateToProps,
