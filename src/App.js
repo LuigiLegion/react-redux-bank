@@ -1,7 +1,7 @@
 // Imports
 import React from 'react';
 
-import Bank from './components/Bank';
+import Bank from './components/bank/Bank';
 
 // Component
 function App() {

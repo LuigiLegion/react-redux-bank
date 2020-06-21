@@ -1,7 +1,7 @@
 // Imports
 import React from 'react';
 
-import Logo from './Logo';
+import Logo from '../layout/Logo';
 import Atm from './Atm';
 
 // Component
