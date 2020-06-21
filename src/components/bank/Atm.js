@@ -13,7 +13,7 @@ import {
   withdrawFiftyActionCreator,
   withdrawHundredActionCreator,
   convertCurrencyThunkCreator,
-} from '../store/reducers/bankReducer';
+} from '../../store/reducers/bankReducer';
 
 // Component
 class Atm extends Component {
