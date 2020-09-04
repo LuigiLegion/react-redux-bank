@@ -18,4 +18,5 @@ function Logo() {
   );
 }
 
+// Exports
 export default Logo;
