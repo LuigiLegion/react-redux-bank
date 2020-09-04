@@ -299,6 +299,7 @@ Atm.propTypes = {
   convertCurrencyThunk: PropTypes.func,
 };
 
+// Exports
 export default connect(
   mapStateToProps,
   mapDispatchToProps

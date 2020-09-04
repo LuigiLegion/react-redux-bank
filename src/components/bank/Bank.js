@@ -15,4 +15,5 @@ function Bank() {
   );
 }
 
+// Exports
 export default Bank;
